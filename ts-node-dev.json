@@ -1,0 +1,8 @@
+{
+  "watch": ["src", "config"],
+  "ext": "ts,json",
+  "ignore": ["src/**/*.spec.ts"],
+  "execMap": {
+    "ts": "node --no-warnings=ExperimentalWarning"
+  }
+}
