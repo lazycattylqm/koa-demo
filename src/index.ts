@@ -1,14 +1,19 @@
-import { bodyParser } from '@koa/bodyparser';
-import * as Cors from '@koa/cors';
-import * as Koa from 'koa';
-import router from './route';
+import * as cors from 'cors';
+import * as dotenv from 'dotenv';
+import * as express from 'express';
+import { combineRouter } from './route/combinRouter';
+import * as bodyParser from 'body-parser';
 
-const app = new Koa();
+dotenv.config();
 
-app.use(Cors());
-app.use(bodyParser());
-app.use(router.router());
+const app = express();
 
-app.listen(4000, () => {
-  console.log('Listening to port 4000');
+app.use(cors())
+
+app.use(bodyParser.json());
+
+combineRouter(app);
+
+app.listen(process.env.port, () => {
+  console.log(`Server is running on port ${process.env.port}`);
 });
