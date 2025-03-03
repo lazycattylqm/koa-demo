@@ -9,11 +9,11 @@ const router = express.Router()
 const basePath: string = path.join(path.resolve(process.cwd()), 'data')
 
 router.put('/file', (req, res) => {
-  const { items } = req.body as FileRequest
+  const { fileName, items } = req.body as FileRequest
   if (!fs.existsSync(basePath)) {
     fs.mkdirSync(basePath)
   }
-  fs.writeFileSync(path.join(basePath, 'file.json'), JSON.stringify(items))
+  fs.writeFileSync(path.join(basePath, 'fileName'), JSON.stringify(items))
 
 
   res.send({
