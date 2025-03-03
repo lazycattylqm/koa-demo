@@ -13,7 +13,7 @@ router.put('/file', (req, res) => {
   if (!fs.existsSync(basePath)) {
     fs.mkdirSync(basePath)
   }
-  fs.writeFileSync(path.join(basePath, 'fileName'), JSON.stringify(items))
+  fs.writeFileSync(path.join(basePath, fileName), JSON.stringify(items))
 
 
   res.send({
