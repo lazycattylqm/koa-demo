@@ -5,10 +5,6 @@ import { FileRequest, FileResponse } from '../type';
 
 const router: Router = new Router({ prefix: '/api' });
 
-const basePath: string = path.join(path.resolve(process.cwd()), 'data');
-if (!fs.existsSync(basePath)) {
-  fs.mkdirSync(basePath);
-}
 
 const uploadPath: string = path.join(path.resolve(process.cwd()), 'public/upload');
 
@@ -21,7 +17,7 @@ router.put('/file', async (ctx: any) => {
   const fileName: string = body.fileName
 
 
-  fs.writeFileSync(path.join(basePath, fileName), JSON.stringify(body.items), { flag: 'w' });
+  fs.writeFileSync(path.join(uploadPath, fileName), JSON.stringify(body.items), { flag: 'w' });
   const response: FileResponse = {
     message: 'File created!'
   }
