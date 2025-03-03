@@ -1,8 +1,8 @@
+import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as dotenv from 'dotenv';
 import * as express from 'express';
 import { combineRouter } from './route/combinRouter';
-import * as bodyParser from 'body-parser';
 
 dotenv.config();
 
@@ -11,6 +11,8 @@ const app = express();
 app.use(cors())
 
 app.use(bodyParser.json());
+
+app.use(express.static('public'))
 
 combineRouter(app);
 
