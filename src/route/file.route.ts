@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as Router from 'koa-router';
+import * as send from 'koa-send';
 import * as path from 'path';
 import { FileRequest, FileResponse } from '../type';
 
@@ -37,6 +38,16 @@ router.get('/download/:file', async (ctx: any) => {
   const filePath = path.join(uploadPath, file);
   ctx.attachment(filePath);
   ctx.body = fs.createReadStream(filePath);
+});
+
+router.get('/preview/:file', async (ctx: any) => {
+  const file = ctx.params.file;
+  const filePath = path.join(uploadPath, file);
+  await send(ctx, file, { root: uploadPath });
+});
+
+router.get('/h', async (ctx: any) => {
+  ctx.body = 'Hello World!';
 });
 
 export default router;
