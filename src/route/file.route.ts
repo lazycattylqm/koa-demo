@@ -48,7 +48,7 @@ router.post('/upload', upload.single('file'), (req, res) => {
 })
 
 router.get('/download/:fileName', (req, res) => {
-  const { fileName } = req.query
+  const { fileName } = req.params
   if (!fs.existsSync(path.join(uploadPath, fileName as string))) {
     res.status(404).send({
       message: 'File not found'
@@ -56,6 +56,17 @@ router.get('/download/:fileName', (req, res) => {
   } else {
     res.download(path.join(uploadPath, fileName as string))
   }
+})
+
+router.get('/preview/:fileName', (req, res) => {
+  const { fileName } = req.params
+  if (!fs.existsSync(path.join(uploadPath, fileName as string))) {
+    res.status(404).send({
+      message: 'File not found'
+    })
+  }
+  res.type(path.extname(fileName as string))
+  res.sendFile(path.join(uploadPath, fileName as string))
 })
 
 
