@@ -42,7 +42,6 @@ router.get('/download/:file', async (ctx: any) => {
 
 router.get('/preview/:file', async (ctx: any) => {
   const file = ctx.params.file;
-  const filePath = path.join(uploadPath, file);
   await send(ctx, file, { root: uploadPath });
 });
 
