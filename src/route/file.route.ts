@@ -42,8 +42,10 @@ router.put('/file', (req, res) => {
 
 router.post('/upload', upload.single('file'), (req, res) => {
 
+  //print the uploaded file name
+  console.log(req.file.filename);
   res.send({
-    message: 'File uploaded successfully'
+    message: `${req.file.filename} File uploaded successfully`
   });
 })
 
