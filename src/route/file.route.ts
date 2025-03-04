@@ -46,8 +46,4 @@ router.get('/preview/:file', async (ctx: any) => {
   await send(ctx, file, { root: uploadPath });
 });
 
-router.get('/h', async (ctx: any) => {
-  ctx.body = 'Hello World!';
-});
-
 export default router;
